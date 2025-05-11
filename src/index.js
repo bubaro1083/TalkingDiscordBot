@@ -12,17 +12,10 @@ console.log(`${chalk.green("[+]")} Loaded .ENV!`);
 // Create Client
 const app = new Client({
     intents: [
-        GatewayIntentBits.Guilds, // For guilds
-        GatewayIntentBits.GuildMembers, // For guild members
+        // GatewayIntentBits.Guilds, // For guilds
+        // GatewayIntentBits.GuildMembers, // For guild members
         GatewayIntentBits.GuildMessages, // For guild messages
-        GatewayIntentBits.MessageContent, // For message content
-        GatewayIntentBits.GuildModeration, // For moderation events
-        GatewayIntentBits.DirectMessages, // For DMs
-
-        GatewayIntentBits.GuildVoiceStates, // For voice channels
-        GatewayIntentBits.GuildPresences, // For presence updates
-        GatewayIntentBits.GuildMessageTyping, // For typing events
-        GatewayIntentBits.GuildEmojisAndStickers, // For emoji and sticker events
+        // GatewayIntentBits.MessageContent, // For message content
     ]
 });
 
@@ -54,26 +47,6 @@ for (const folder of eventsFolders)
     }
 }
 
-// Check for updates
-if (LATEST_UPDATE !== "")
-{
-    console.log(`Application updates found! ${LATEST_UPDATE}`);
-}
-else
-{
-    console.log("No updates detected!");
-}
-
-if (killDynoMode)
-{
-    app.on("messageCreate", (message) => {
-        if (message.author.bot && message.author.username === "Dyno" && message.deletable && message.channelId === "1067984247962488936")
-        {
-            message.delete();
-        }
-    });
-}
-
 // Login
 // console.log(`Attemping to create bot using token:\t ${process.env.DISCORD_BOT_TOKEN}`);
 // console.log(`Attemping to create bot using token:\t ${chalk.hidden(process.env.DISCORD_BOT_TOKEN)}`);
@@ -86,4 +59,4 @@ app.voiceChannels = new Map(); // Map of voice channels
 // Start dashboard server
 console.log("Attemping to start dashboard server..");
 require("./dashboard/server.js")(app);
-require("./functions/websocket.js")(app);
+// require("./functions/websocket.js")(app);
